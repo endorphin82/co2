@@ -24,8 +24,6 @@
 
 Adafruit_SSD1306 oled(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
-long lastMsg = 0;
-
 I2cInterface i2c;
 
 CustomAHT21 aht21;
@@ -60,15 +58,16 @@ void initializeDisplay()
 }
 void initializeSensors()
 {
-  // initialize ENS160 sensor
-  debugln("[initializeSensors] Initializing ENS160.");
-  ens160.begin(&i2c);
-  debugln("[initializeSensors] ENS160 initialized successfully.");
-
+  delay(3000);
   // initialize AHT21 sensor
   debug("[initializeSensors] Initializing AHT21.");
   aht21.begin();
   debugln("[initializeSensors] AHT21 initialized successfully.");
+
+  // initialize ENS160 sensor
+  debugln("[initializeSensors] Initializing ENS160.");
+  ens160.begin(&i2c);
+  debugln("[initializeSensors] ENS160 initialized successfully.");
 }
 
 void setup()
